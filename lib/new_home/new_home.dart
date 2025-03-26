@@ -1,86 +1,112 @@
-import 'dart:async';
+// import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:location/location.dart';
 
-class NewHome extends StatefulWidget {
-  const NewHome({super.key});
+// class HomePage extends StatefulWidget {
+//   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<NewHome> createState() => _NewHomeState();
-}
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
 
-class _NewHomeState extends State<NewHome> {
-  final Completer<GoogleMapController> _googleMapController = Completer();
-  CameraPosition? _cameraPosition;
-  Location? _location;
+// class _HomePageState extends State<HomePage> {
+//   Completer<GoogleMapController> _googleMapController = Completer();
+//   CameraPosition? _cameraPosition;
+//   Location? _location;
+//   LocationData? _currentLocation;
 
-  @override
-  void initState() {
-    _init();
-    super.initState();
-  }
+//   @override
+//   void initState() {
+//     _init();
+//     super.initState();
+//   }
 
-  _init() {
-    _location = Location();
-    _cameraPosition = CameraPosition(
-      target: LatLng(23.778208129456246, 90.3968216098055),
-      zoom: 15,
-    );
-  }
+//   _init() async {
+//     _location = Location();
+//     _cameraPosition = CameraPosition(
+//       target: LatLng(
+//         0,
+//         0,
+//       ), // this is just the example lat and lng for initializing
+//       zoom: 15,
+//     );
+//     _initLocation();
+//   }
 
-  Future<LocationData?> _getCurrentLocation() async {
-    var currentLocation = await _location?.getLocation();
-    return currentLocation;
-  }
+//   //function to listen when we move position
+//   _initLocation() {
+//     //use this to go to current location instead
+//     _location?.getLocation().then((location) {
+//       _currentLocation = location;
+//     });
+//     _location?.onLocationChanged.listen((newLocation) {
+//       _currentLocation = newLocation;
+//       moveToPosition(
+//         LatLng(
+//           _currentLocation?.latitude ?? 0,
+//           _currentLocation?.longitude ?? 0,
+//         ),
+//       );
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: _buildBody());
-  }
+//   moveToPosition(LatLng latLng) async {
+//     GoogleMapController mapController = await _googleMapController.future;
+//     mapController.animateCamera(
+//       CameraUpdate.newCameraPosition(CameraPosition(target: latLng, zoom: 15)),
+//     );
+//   }
 
-  Widget _buildBody() {
-    return _getMap();
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(body: _buildBody());
+//   }
 
-  Widget _getMarker() {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(100),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            offset: Offset(0, 3),
-            spreadRadius: 4,
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: ClipOval(child: Image.asset('assets/images/abir.jpg')),
-    );
-  }
+//   Widget _buildBody() {
+//     return _getMap();
+//   }
 
-  Widget _getMap() {
-    return Stack(
-      children: [
-        GoogleMap(
-          initialCameraPosition: _cameraPosition!,
-          mapType: MapType.normal,
-          onMapCreated: (GoogleMapController controller) {
-            if (!_googleMapController.isCompleted) {
-              _googleMapController.complete(controller);
-            }
-          },
-        ),
-        Positioned.fill(
-          child: Align(alignment: Alignment.center, child: _getMarker()),
-        ),
-      ],
-    );
-  }
-}
+//   Widget _getMarker() {
+//     return Container(
+//       width: 40,
+//       height: 40,
+//       padding: EdgeInsets.all(2),
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(100),
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.grey,
+//             offset: Offset(0, 3),
+//             spreadRadius: 4,
+//             blurRadius: 6,
+//           ),
+//         ],
+//       ),
+//       child: ClipOval(child: Image.asset("assets/abir.jpg")),
+//     );
+//   }
+
+//   Widget _getMap() {
+//     return Stack(
+//       children: [
+//         GoogleMap(
+//           initialCameraPosition: _cameraPosition!,
+//           mapType: MapType.normal,
+//           onMapCreated: (GoogleMapController controller) {
+//             // now we need a variable to get the controller of google map
+//             if (!_googleMapController.isCompleted) {
+//               _googleMapController.complete(controller);
+//             }
+//           },
+//         ),
+
+//         Positioned.fill(
+//           child: Align(alignment: Alignment.center, child: _getMarker()),
+//         ),
+//       ],
+//     );
+//   }
+// }
