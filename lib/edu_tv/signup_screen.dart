@@ -6,7 +6,7 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
-  SignupScreen({super.key});
+  const SignupScreen({super.key});
 
   // final SignupController controller = Get.put(SignupController());
   bool hasUpperAndLowerCase(String text) {

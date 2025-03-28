@@ -1,6 +1,4 @@
-import 'package:bus_tracking/edu_tv/signin_screen.dart';
-import 'package:bus_tracking/home_screen/home_screen.dart';
-import 'package:bus_tracking/new_home/new_home.dart';
+import 'package:bus_tracking/google_map/google_map.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MapScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: GoogleMapFlutter(),
+    );
   }
 }
